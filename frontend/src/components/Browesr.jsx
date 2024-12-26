@@ -1,13 +1,13 @@
 import React from "react";
 import Header from "./Header";
 
-function Login() {
+const Browesr = () => {
   return (
     <div>
       <Header />
-      <div>login</div>
+      <div>browser</div>
     </div>
   );
-}
+};
 
-export default Login;
+export default Browesr;
