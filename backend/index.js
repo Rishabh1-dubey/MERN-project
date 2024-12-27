@@ -3,7 +3,7 @@ import cookieParsar from "cookie-parser";
 import userRoutes from "../backend/routes/userRoutes.js"
 import dotenv from "dotenv";
 import mongooseConnection from "./utils/database.js";
-
+import cors from "cors"
 
 mongooseConnection()
 
@@ -18,8 +18,13 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieParsar())
 
 
+const corsOption={
+    origin:'http://localhost:5173',
+    credentials:true     
+}
+app.use(cors(corsOption))
 
-//this is the function where you define your database
+
 
 
 app.get("/",(req,res)=>{
