@@ -1,12 +1,26 @@
 import express  from "express"
 import cookieParsar from "cookie-parser";
 import userRoutes from "../backend/routes/userRoutes.js"
-const app = express()
+import dotenv from "dotenv";
+import mongooseConnection from "./utils/database.js";
 
+
+mongooseConnection()
+
+dotenv.config({
+    path:".env"
+})
+
+const app = express()
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(cookieParsar)
+app.use(cookieParsar())
+
+
+
+//this is the function where you define your database
+
 
 app.get("/",(req,res)=>{
 res.status(401).json({
