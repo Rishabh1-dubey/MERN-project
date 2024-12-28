@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading, setUser } from "../redux/userSlice";
-import store from "../redux/store";
+import { FaSadCry } from "react-icons/fa";
 
 function Login() {
   const [logIN, setLogin] = useState(false);
@@ -18,7 +18,7 @@ function Login() {
   const dispatch = useDispatch();
 
   //subscribe the store
-  const isLoading = useSelector(store => store.app.isLoading);
+  const isLoading = useSelector((store) => store.app.isLoading);
 
   const handleclick = () => {
     setLogin(!logIN);
@@ -29,7 +29,6 @@ function Login() {
     dispatch(setLoading(true));
     if (logIN) {
       //login
-
       try {
         const user = { email, password };
         const res = await axios.post(`${BACKEND_URL}/signin`, user, {
@@ -38,18 +37,19 @@ function Login() {
           },
           withCredentials: true,
         });
-        console.log(res);
+        
         if (res.data.success) {
           toast.success(res.data.message);
         }
 
         dispatch(setUser(res.data.user));
+        console.log(res.data.user)
         navigate("/browser");
       } catch (error) {
         toast.error(error.response.data.message);
         console.log(error);
       } finally {
-        dispatch(setLoading(true));
+        dispatch(setLoading(false));
       }
     } else {
       //signup
@@ -66,14 +66,16 @@ function Login() {
         if (res.data.success) {
           toast.success(res.data.message);
         }
-        if (logIN) {
-          navigate("/browser");
-        }
+        dispatch(setUser(res.data.user));
+     setLogin(true);
       } catch (error) {
         toast.error(error.response.data.message);
         console.log(error);
+      }finally{
+        dispatch(setLoading(false))
       }
     }
+   
   };
   return (
     <div>
@@ -129,7 +131,7 @@ function Login() {
           />
 
           <button className="mt-6 px-2 py-2 font-semibold bg-red-800 cursor-pointer hover:bg-red-700">
-           {`${isLoading ?"loading...." : logIN ?"Login":"Signup"}`}
+            {`${isLoading ? "loading...." : logIN ? "Login" : "Signup"}`}
           </button>
           <p
             onClick={handleclick}

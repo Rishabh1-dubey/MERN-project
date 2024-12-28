@@ -1,25 +1,39 @@
 import React, { useEffect } from "react";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import MovieContainer from "./movieContainer";
+import axios from "axios";
+import { BACKEND_URL, MOVIE_URL, options } from "../utils/constents";
+import MainContainer from "./MainContainer";
+import { now_Playing_Movie } from "../redux/movieSlice";
 
-const Browesr = () => {
+const Browesr =  () => {
+  const user = useSelector((store) => store.app.user);
+const dispatch=useDispatch()
+  const navigate = useNavigate();
 
-const user = useSelector((store)=>store.app.user)
+  const nowPlayingMovies= async()=>{
 
-  const navigate = useNavigate()
-  useEffect(()=>{
-if(!user){
-  navigate("/")
-}
-  },[])
+    const res = await axios.get(`${MOVIE_URL}/now_playing`, options);
+    console.log(res.data.results);
+    dispatch(now_Playing_Movie(res.data.results))
+  }
 
-
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+    nowPlayingMovies()
+  }, []);
 
   return (
     <div>
       <Header />
-      <div>browser</div>
+      <div>
+        <MainContainer />
+        <MovieContainer />
+      </div>
     </div>
   );
 };
