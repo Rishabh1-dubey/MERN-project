@@ -2,6 +2,7 @@ import { User } from "../models/userSchema.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config.js";
+
 //-------------signup logic-----------------------------
 const userRegister = async (req, res) => {
   try {
@@ -30,6 +31,8 @@ const userRegister = async (req, res) => {
     });
     return res.status(200).json({
       message: "Account created Successfully",
+      success:true,
+      user
     });
   } catch (error) {
     console.log(error);
@@ -37,6 +40,7 @@ const userRegister = async (req, res) => {
 };
 
 export default userRegister;
+
 
 //------------------logout-------------------------
 
@@ -89,6 +93,7 @@ export const Signin = async (req, res) => {
         token,
         message: `Welcome back ${user.name} `,
         success: true,
+        user
       });
   } catch (error) {}
 };
