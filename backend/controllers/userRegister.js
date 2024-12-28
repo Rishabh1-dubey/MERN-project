@@ -33,6 +33,7 @@ const userRegister = async (req, res) => {
       message: "Account created Successfully",
       success:true,
       user
+      
     });
   } catch (error) {
     console.log(error);
@@ -92,8 +93,8 @@ export const Signin = async (req, res) => {
       .json({
         token,
         message: `Welcome back ${user.name} `,
-        success: true,
-        user
+        user,
+        success: true
       });
   } catch (error) {}
 };
