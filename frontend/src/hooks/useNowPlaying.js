@@ -7,6 +7,7 @@ const useNowPlaying = async () => {
     const dispatch = useDispatch();
   try {
     const res = await axios.get(`${MOVIE_URL}/now_playing`, options);
+  
     dispatch(now_Playing_Movie(res.data.results));
   } catch (error) {
     console.log(error);
