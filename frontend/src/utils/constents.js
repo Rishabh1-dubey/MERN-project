@@ -9,3 +9,5 @@ export const  options = {
   };
 
 export const MOVIE_URL ="https://api.themoviedb.org/3/movie"
+
+export const TMDB_IMG="https://image.tmdb.org/t/p/original"
