@@ -9,7 +9,7 @@ const uri ="mongodb+srv://renio067778:rishabh06@cluster0.n9bky.mongodb.net/"
 //     path:"../.env"
 // })
 const mongooseConnection =()=> {
-    console.log('MONGO_URL:', uri);
+   
 
     mongoose.connect(uri,{ useNewUrlParser: true ,useUnifiedTopology:true}).then(()=>{
         console.log("mongoose data connected successfully")
