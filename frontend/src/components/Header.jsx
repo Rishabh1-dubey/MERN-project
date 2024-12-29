@@ -1,19 +1,22 @@
 import axios from "axios";
 import React from "react";
 import { IoIosArrowDropdown } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BACKEND_URL } from "../utils/constents";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { setUser } from "../redux/userSlice";
+import { toggle } from "../redux/movieSlice";
 const Header = () => {
   const user = useSelector((store) => store.app.user);
-  const navigate = useNavigate();
+  const toggle = useSelector((store) => store.movie.toggle);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const Logout = async () => {
     try {
       const res = await axios.get(`${BACKEND_URL}/logout`);
-      console.log(res);
+
       if (res.data.success) {
         toast.success(res.data.message);
       }
@@ -24,6 +27,11 @@ const Header = () => {
       console.log(error);
     }
   };
+
+  const toggleSearch = () => {
+    dispatch(toggle())
+  };
+
   return (
     <div className="absolute flex justify-between items-center bg-gradient-to-b from-black  w-[100%] p-8 px-12 ">
       <img
@@ -46,8 +54,11 @@ const Header = () => {
               Logout
             </button>
 
-            <button className="bg-red-800 text-white px-4 py-2 ml-2 ">
-              SearchMovie
+            <button
+              onClick={toggleSearch}
+              className="bg-red-800 text-white px-4 py-2 ml-2 "
+            >
+            SearchMovie
             </button>
           </div>
         </div>

@@ -3,9 +3,9 @@ import { IoMdPlayCircle } from "react-icons/io";
 import { FaInfoCircle } from "react-icons/fa";
 const VideoTitle = () => {
   return (
-    <div className="absolute aspect-video pt-[16%] text-white">
+    <div className="w-screens absolute aspect-video pt-[16%] text-white ml-24">
       <h1 className="text-3xl font-bold  ">hello Rishabh Mern</h1>
-      <p className="text-xl ">
+      <p className="text-xl pt-4 pb-4 ">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
         iure vel provident hic soluta.
       </p>

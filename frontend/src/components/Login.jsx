@@ -43,18 +43,18 @@ function Login() {
         }
 
         dispatch(setUser(res.data.user));
-        console.log(res.data.user)
+      
         navigate("/browser");
       } catch (error) {
         toast.error(error.response.data.message);
-        console.log(error);
+      
       } finally {
         dispatch(setLoading(false));
       }
     } else {
       //signup
       const user = { name, email, password };
-      console.log(user);
+   
       try {
         const res = await axios.post(`${BACKEND_URL}/signup`, user, {
           headers: {
@@ -62,7 +62,7 @@ function Login() {
             withCredentials: true,
           },
         });
-        console.log(res);
+       
         if (res.data.success) {
           toast.success(res.data.message);
         }
