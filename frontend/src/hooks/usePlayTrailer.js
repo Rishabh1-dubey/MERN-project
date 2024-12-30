@@ -22,7 +22,7 @@ const UseTrailerMain=(movieId)=>{
       });
       dispatch(Set_Trailer(trailer.length  > 0 ? trailer[0] : trailer[1]));
       
-      console.log(res.data.results);
+     
     }
 
     useEffect(()=>{
