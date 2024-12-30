@@ -1,8 +1,14 @@
 import React from 'react'
+import Header from '../Header'
 
 const CardInfo = () => {
   return (
-    <div>CardInfo</div>
+    <div>
+        
+<Header/>
+<idv>CardInfo</idv>
+
+    </div>
   )
 }
 

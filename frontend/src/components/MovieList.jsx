@@ -1,5 +1,6 @@
 import React from "react";
 import MovieCard from "./MovieCard";
+import { Link } from "react-router-dom";
 
 const MovieList = ({ title, movies }) => {
   return (
@@ -10,10 +11,12 @@ const MovieList = ({ title, movies }) => {
 
         <div className="flex items-center ">
           {movies?.map((movie) => (
+            <Link key={movie.id} to="/cardinfo" > 
             <MovieCard
             key={movie.id}
             poster_path={movie.poster_path || movie.backdrop_path}
             />
+            </Link>
           ))}
           </div>
         </div>

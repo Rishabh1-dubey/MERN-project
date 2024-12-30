@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import axios from "axios";
 import { BACKEND_URL } from "../utils/constents";
@@ -37,13 +37,14 @@ function Login() {
           },
           withCredentials: true,
         });
-        
+      
         if (res.data.success) {
           toast.success(res.data.message);
         }
 
         dispatch(setUser(res.data.user));
-      
+      const token = res.data.token;
+      localStorage.setItem("token",token)
         navigate("/browser");
       } catch (error) {
         toast.error(error.response.data.message);
@@ -76,6 +77,15 @@ function Login() {
       }
     }
    
+
+    useEffect(()=>{
+      const token =  localStorage.getItem("token");
+      if(token){
+        navigate("/browser")
+      }else{
+        navigate("/")
+      }
+    },[navigate])
   };
   return (
     <div>
