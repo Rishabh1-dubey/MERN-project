@@ -11,8 +11,8 @@ import SearchMovie from "./SearchMovie";
 import MovieContainer from "./MovieContainer";
 
 const Browesr = () => {
-  const toggle = useSelector((store) => store.movie.toggle);
-  const user = useSelector((store) => store.app.user);
+  const toggle = useSelector(store => store.movie.toggle);
+  const user = useSelector(store => store.app.user);
   const navigate = useNavigate();
 
   useNowPlaying();
@@ -29,9 +29,9 @@ const Browesr = () => {
     <div>
       <Header />
       <div>
-        {toggle ? (
+        {toggle ? 
           <SearchMovie />
-        ) : (
+         : (
           <>
             <MainContainer />
             <MovieContainer />

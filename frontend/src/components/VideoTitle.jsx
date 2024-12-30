@@ -1,14 +1,15 @@
 import React from "react";
 import { IoMdPlayCircle } from "react-icons/io";
 import { FaInfoCircle } from "react-icons/fa";
-const VideoTitle = () => {
+const VideoTitle = ({title , overview}) => {
   return (
-    <div className="w-screens absolute aspect-video pt-[16%] text-white ml-24">
-      <h1 className="text-3xl font-bold  ">hello Rishabh Mern</h1>
-      <p className="text-xl pt-4 pb-4 ">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-        iure vel provident hic soluta.
+    <div className="w-screen aspect-video absolute pt-[16%] bg-gradient-to-r from-black text-white    ">
+      <div className="ml-24 z-10 ">
+      <h1 className="text-3xl font-bold  ">{title}</h1>
+      <p className="text-xl pt-4 pb-4 w-1/3 ">
+        {overview}.
       </p>
+        
       <div className="flex gap-6 ">
         <button className="flex  gap-2 rounded-xl bg-red-600 py-2 px-8 text-center delay-100 hover:cursor-pointer hover:text-black hover:bg-white text-white text-xl font-bold ">
           {" "}
@@ -19,6 +20,7 @@ const VideoTitle = () => {
           {" "}
           More Info <FaInfoCircle className="text-2xl mt-1" />
         </button>
+      </div>
       </div>
     </div>
   );
