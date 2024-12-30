@@ -13,7 +13,7 @@ const Body = () => {
       path: "/browser",
       element: <Browesr />,
     },{
-      path:"/cardinfo",
+      path:"/cardinfo/:id",
       element:<CardInfo/>
     }
   ]);

@@ -11,12 +11,13 @@ const MovieList = ({ title, movies }) => {
 
         <div className="flex items-center ">
           {movies?.map((movie) => (
-            <Link key={movie.id} to="/cardinfo" > 
+           <Link to={"/cardinfo/"+ movie?.id}>
             <MovieCard
             key={movie.id}
             poster_path={movie.poster_path || movie.backdrop_path}
             />
             </Link>
+            
           ))}
           </div>
         </div>
