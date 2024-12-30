@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 const movieSlice = createSlice({
   name: "movie",
   initialState: {
@@ -10,6 +9,7 @@ const movieSlice = createSlice({
     toggle: false,
     movieTrailer: null,
     movieInfo: null,
+    playTrailer:null
   },
   reducers: {
     //action
@@ -34,6 +34,9 @@ const movieSlice = createSlice({
     Set_Movie_Info: (state, action) => {
       state.movieInfo = action.payload;
     },
+    Set_Movie__card_Trailer:(state,action)=>{
+      state.playTrailer= action.payload;
+    }
   },
 });
 export const {
@@ -44,5 +47,6 @@ export const {
   Set_toggle,
   Set_Trailer,
   Set_Movie_Info,
+  Set_Movie__card_Trailer,
 } = movieSlice.actions;
 export default movieSlice.reducer;
