@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
 import { useSelector } from "react-redux";
 
 const MainContainer = () => {
+// const [video, setVideo] = useState(null);
+
+
+
+
+// let randomData =
+// data.results[(Math.random() * data.results.length).toFixed()];
+
   const movie = useSelector((store) => store?.movie?.NowPlayingMovie);
   if (!movie) return; // early return ---
+  console.log(movie)
  
   const { id, overview, title } = movie[3];
+  // movie[(Math.random() * movie.length).toFixed()];
   return (
     <div>
       <div className="bg-black">
