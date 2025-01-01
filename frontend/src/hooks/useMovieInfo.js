@@ -11,7 +11,9 @@ const dispatch= useDispatch()
  const Movieinfo= async()=>
    {
     const res = await axios.get(`https://api.themoviedb.org/3/movie/${id}`,options )
+    console.log(res)
     dispatch(Set_Movie_Info(res.data))
+
  }
 
 
