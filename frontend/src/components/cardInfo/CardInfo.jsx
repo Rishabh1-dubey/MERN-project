@@ -1,22 +1,23 @@
 import React from "react";
 import Header from "../Header";
 import useMovieInfo from "../../hooks/useMovieInfo";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import { RiMovie2Line } from "react-icons/ri";
 import { LuLanguages } from "react-icons/lu";
 import { IoMdTimer } from "react-icons/io";
-
-
+import { FaArrowLeft } from "react-icons/fa6";
+import { FaEarthAmericas } from "react-icons/fa6";
 const CardInfo = () => {
-  
-const{pathname} = useLocation()
+  const navigate = useNavigate();
+
+  const { pathname } = useLocation();
 
   const { id } = useParams();
- 
+
   useMovieInfo(id);
-  
+
   const movieinfo = useSelector((store) => store.movie.movieInfo);
   const badgetColor = (rating) => {
     if (rating > 70) {
@@ -31,6 +32,19 @@ const{pathname} = useLocation()
   return (
     <div className="w-[wv]">
       <Header />
+
+      {/* nav bar part -1 */}
+      <nav className="absolute z-10 h-[10vh] w-[400px] flex gap-8 items-center text-2xl text-zinc-200   mt-20 ml-24">
+     
+          <FaArrowLeft className="text-gray-700 hover:text-black cursor-pointer" onClick={()=>navigate(-1)}>
+            
+          </FaArrowLeft>
+       
+        <a target="_blank" className="hover:text-yellow-500 cursor-pointer" href={movieinfo?.homepage}>
+          <FaEarthAmericas />
+        </a>
+      </nav>
+
       <div
         style={{
           background: `linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)),url(https://image.tmdb.org/t/p/original/${movieinfo?.poster_path} )`,
@@ -41,7 +55,7 @@ const{pathname} = useLocation()
       >
         <div>
           {/* //small image  -------------*/}
-          <div className="pt-24 flex">
+          <div className="pt-48 flex">
             <img
               className="h-[60vh] w-[45vh]   rounded-lg  cursor-pointer transform hover:scale-90 transition-all ease-out delay-100 "
               src={`https://image.tmdb.org/t/p/original/${movieinfo?.poster_path}`}
@@ -52,13 +66,11 @@ const{pathname} = useLocation()
               <div className="font-bold text-white text-6xl px-12 ">
                 <span>{movieinfo?.original_title || movieinfo?.title}</span>(
                 <small className="text-xl text-gray-500">
-                  {movieinfo?.release_date.split("-")[0]}
+                  {movieinfo?.release_date?.split("-")[0]}
                 </small>
                 )
               </div>
-
               {/* release date */}
-
               <div className="pl-16  flex items-center gap-6 mb-6 mt-8">
                 <div
                   className={`rounded-full bg-red-500 py-2 px-2 ${badgetColor(
@@ -75,7 +87,6 @@ const{pathname} = useLocation()
                 <span className="text-white">{movieinfo?.release_date}</span>
               </div>
               {/*  */}
-
               {/* overvieew--- */}
               <div className=" pl-12">
                 <span className="font-bold text-3xl  text-yellow-600">
@@ -94,11 +105,10 @@ const{pathname} = useLocation()
                   <LuLanguages className="text-3xl text-yellow-400" />
                 </span>
                 <span className="text-white font-bold">
-                  {movieinfo?.original_language.toUpperCase()}
+                  {movieinfo?.original_language?.toUpperCase()}
                 </span>
               </div>
               {/* ------------ */}
-
               {/* gneras */}
               <div className="flex items-center  mt-4 pl-12">
                 <span className="text-2xl text-white font-bold ">
@@ -121,18 +131,12 @@ const{pathname} = useLocation()
                 </span>
               </div>
               {/*  */}
-
-
-            
-                
-                <Link to={`${pathname}/trailer`} >
-                  <div className="text-white ml-12 py-2 px-2 mt-6 border border-red-300 w-28 rounded-xl">
-                    Play Trailer
-                  </div>
-                </Link>
+              <Link to={`${pathname}/trailer`}>
+                <div className="text-white ml-12 py-2 px-2 mt-6 border border-red-300 w-28 rounded-xl">
+                  Play Trailer
+                </div>
+              </Link>
               )
-              
-            
             </div>
           </div>
         </div>
