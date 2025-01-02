@@ -13,7 +13,7 @@ const useMovieCredit = (id) => {
       options
     );
     console.log(res.data.cast);
-    dispath(Set_Cast(res.data.cast));
+    dispath(Set_Cast(res.data.cast.slice(0,15)));
   };
   useEffect(() => {
     CastandCrew();
