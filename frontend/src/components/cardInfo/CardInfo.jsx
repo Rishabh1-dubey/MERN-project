@@ -1,7 +1,8 @@
 import React from "react";
 import Header from "../Header";
 import useMovieInfo from "../../hooks/useMovieInfo";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import usePlayTrailer from "../../hooks/usePlayTrailer";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import { RiMovie2Line } from "react-icons/ri";
@@ -9,16 +10,21 @@ import { LuLanguages } from "react-icons/lu";
 import { IoMdTimer } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaEarthAmericas } from "react-icons/fa6";
+import CastandCrew from "../CastandCrew";
+
+
 const CardInfo = () => {
   const navigate = useNavigate();
 
-  const { pathname } = useLocation();
-
   const { id } = useParams();
-
+  console.log(id);
   useMovieInfo(id);
-
   const movieinfo = useSelector((store) => store.movie.movieInfo);
+
+  usePlayTrailer(id);
+  const trailer = useSelector((store) => store.movie.playTrailer);
+  console.log(trailer);
+
   const badgetColor = (rating) => {
     if (rating > 70) {
       return "bg-green-700";
@@ -30,24 +36,39 @@ const CardInfo = () => {
   };
 
   return (
-    <div className="w-[wv]">
+    <div className="w-[wv] ">
       <Header />
+      <div>
+        <iframe
+          className="w-screen aspect-video"
+          height="500"
+          src={`https://www.youtube.com/embed/${trailer?.key}?si=BFBYOBci8Cdy9ZHN&autoplay=1`}
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        ></iframe>
+      </div>
 
       {/* nav bar part -1 */}
       <nav className="absolute z-10 h-[10vh] w-[400px] flex gap-8 items-center text-2xl text-zinc-200   mt-20 ml-24">
-     
-          <FaArrowLeft className="text-gray-700 hover:text-black cursor-pointer" onClick={()=>navigate(-1)}>
-            
-          </FaArrowLeft>
-       
-        <a target="_blank" className="hover:text-yellow-500 cursor-pointer" href={movieinfo?.homepage}>
+        <FaArrowLeft
+          className="text-gray-700 hover:text-black cursor-pointer"
+          onClick={() => navigate(-1)}
+        ></FaArrowLeft>
+
+        <a
+          target="_blank"
+          className="hover:text-yellow-500 cursor-pointer"
+          href={movieinfo?.homepage}
+        >
           <FaEarthAmericas />
         </a>
       </nav>
 
       <div
         style={{
-          background: `linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)) ,url(https://image.tmdb.org/t/p/original/${movieinfo?.poster_path || movieinfo?.backdrop_path} )`,
+          background: `linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)) ,url(https://image.tmdb.org/t/p/original/${
+            movieinfo?.poster_path || movieinfo?.backdrop_path
+          } )`,
           backgroundPosition: "top 10%",
           backgroundSize: "cover",
         }}
@@ -58,7 +79,9 @@ const CardInfo = () => {
           <div className="pt-48 flex">
             <img
               className="h-[60vh] w-[45vh]   rounded-lg  cursor-pointer transform hover:scale-90 transition-all ease-out delay-100 "
-              src={`https://image.tmdb.org/t/p/original/${movieinfo?.poster_path || movieinfo?.backdrop_path}`}
+              src={`https://image.tmdb.org/t/p/original/${
+                movieinfo?.poster_path || movieinfo?.backdrop_path
+              }`}
               alt=""
             />
             <div className=" w-full">
@@ -99,6 +122,16 @@ const CardInfo = () => {
                 </h2>
               </div>
               {/* ---------------- */}
+              {/* -----tagline---------- */}
+              <div className="flex items-center pl-12 gap-4 mt-2">
+                <span className="italic font-bold text-blue-500">
+                  Tag line:
+                </span>
+                <span className=" font-bold italic text-white">
+                  {movieinfo?.tagline}
+                </span>
+              </div>
+              {/*  --------------------- */}
               {/* langugage----------- */}
               <div className="flex items-center pl-12 gap-4 mt-2">
                 <span className="">
@@ -131,16 +164,11 @@ const CardInfo = () => {
                 </span>
               </div>
               {/*  */}
-              <Link to={`${pathname}/trailer`}>
-                <div className="text-white ml-12 py-2 px-2 mt-6 border border-red-300 w-28 rounded-xl">
-                  Play Trailer
-                </div>
-              </Link>
-              
             </div>
           </div>
         </div>
       </div>
+      {/* <CastandCrew/> */}
     </div>
   );
 };
