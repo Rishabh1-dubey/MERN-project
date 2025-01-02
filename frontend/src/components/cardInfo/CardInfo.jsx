@@ -10,7 +10,6 @@ import { IoMdTimer } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaEarthAmericas } from "react-icons/fa6";
 const CardInfo = () => {
-  
   const navigate = useNavigate();
 
   const { pathname } = useLocation();
