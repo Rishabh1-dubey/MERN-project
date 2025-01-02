@@ -9,7 +9,8 @@ const movieSlice = createSlice({
     toggle: false,
     movieTrailer: null,
     movieInfo: null,
-    playTrailer:null
+    playTrailer:null,
+    cast:null
   },
   reducers: {
     //action
@@ -36,7 +37,11 @@ const movieSlice = createSlice({
     },
     Set_Movie__card_Trailer:(state,action)=>{
       state.playTrailer= action.payload;
+    },
+    Set_Cast: (state,action)=>{
+      state.cast = action.payload
     }
+    
   },
 });
 export const {
@@ -48,5 +53,6 @@ export const {
   Set_Trailer,
   Set_Movie_Info,
   Set_Movie__card_Trailer,
+  Set_Cast
 } = movieSlice.actions;
 export default movieSlice.reducer;
