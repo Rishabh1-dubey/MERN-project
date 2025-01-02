@@ -20,11 +20,11 @@ const CardInfo = () => {
   console.log(id);
   useMovieInfo(id);
   const movieinfo = useSelector((store) => store.movie.movieInfo);
-
+  
   usePlayTrailer(id);
   const trailer = useSelector((store) => store.movie.playTrailer);
   console.log(trailer);
-
+  
   const badgetColor = (rating) => {
     if (rating > 70) {
       return "bg-green-700";
@@ -34,24 +34,17 @@ const CardInfo = () => {
       return "";
     }
   };
-
+  
   return (
-    <div className="w-[wv] ">
-      <Header />
-      <div>
-        <iframe
-          className="w-screen aspect-video"
-          height="500"
-          src={`https://www.youtube.com/embed/${trailer?.key}?si=BFBYOBci8Cdy9ZHN&autoplay=1`}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        ></iframe>
-      </div>
+    <div className="w-full">
 
-      {/* nav bar part -1 */}
+
+      <Header />
+
+        {/* nav bar part -1 */}
       <nav className="absolute z-10 h-[10vh] w-[400px] flex gap-8 items-center text-2xl text-zinc-200   mt-20 ml-24">
         <FaArrowLeft
-          className="text-gray-700 hover:text-black cursor-pointer"
+          className="text-gray-600 hover:text-yellow-500 cursor-pointer"
           onClick={() => navigate(-1)}
         ></FaArrowLeft>
 
@@ -59,10 +52,31 @@ const CardInfo = () => {
           target="_blank"
           className="hover:text-yellow-500 cursor-pointer"
           href={movieinfo?.homepage}
-        >
+          >
           <FaEarthAmericas />
         </a>
       </nav>
+    <div>
+      <div style={{
+          background: `linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)) ,url(https://image.tmdb.org/t/p/original/${
+            movieinfo?.poster_path || movieinfo?.backdrop_path
+          } )`,
+          backgroundPosition: "top 10%",
+          backgroundSize: "cover",
+        }} className="pt-28 bg-slate-800">
+        <div className="w-[800px] mx-auto ">
+
+        <iframe
+          className="w-full aspect-video pb-6"
+          height="500"
+          width="1000"
+          src={`https://www.youtube.com/embed/${trailer?.key}?si=BFBYOBci8Cdy9ZHN&autoplay=1`}
+          
+          ></iframe>
+          </div>
+          </div>
+      </div>
+
 
       <div
         style={{
@@ -73,17 +87,17 @@ const CardInfo = () => {
           backgroundSize: "cover",
         }}
         className="relative w-screen h-[140vh]    px-[10%]"
-      >
-        <div>
+        >
+        <div className="">
           {/* //small image  -------------*/}
-          <div className="pt-48 flex">
+          <div className="pt-36 flex">
             <img
               className="h-[60vh] w-[45vh]   rounded-lg  cursor-pointer transform hover:scale-90 transition-all ease-out delay-100 "
               src={`https://image.tmdb.org/t/p/original/${
                 movieinfo?.poster_path || movieinfo?.backdrop_path
               }`}
               alt=""
-            />
+              />
             <div className=" w-full">
               {/* title */}
               <div className="font-bold text-white text-6xl px-12 ">
@@ -166,10 +180,10 @@ const CardInfo = () => {
               {/*  */}
             </div>
           </div>
-        </div>
       </div>
-      {/* <CastandCrew/> */}
     </div>
+      <CastandCrew/>
+              </div>
   );
 };
 
