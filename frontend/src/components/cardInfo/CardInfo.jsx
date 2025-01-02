@@ -10,6 +10,7 @@ import { IoMdTimer } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaEarthAmericas } from "react-icons/fa6";
 const CardInfo = () => {
+  
   const navigate = useNavigate();
 
   const { pathname } = useLocation();
@@ -25,7 +26,7 @@ const CardInfo = () => {
     } else if (rating <= 70) {
       return "bg-yellow-700";
     } else {
-      return "bg-red-300";
+      return "";
     }
   };
 
@@ -47,7 +48,7 @@ const CardInfo = () => {
 
       <div
         style={{
-          background: `linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)),url(https://image.tmdb.org/t/p/original/${movieinfo?.poster_path} )`,
+          background: `linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)) ,url(https://image.tmdb.org/t/p/original/${movieinfo?.poster_path || movieinfo?.backdrop_path} )`,
           backgroundPosition: "top 10%",
           backgroundSize: "cover",
         }}
@@ -58,7 +59,7 @@ const CardInfo = () => {
           <div className="pt-48 flex">
             <img
               className="h-[60vh] w-[45vh]   rounded-lg  cursor-pointer transform hover:scale-90 transition-all ease-out delay-100 "
-              src={`https://image.tmdb.org/t/p/original/${movieinfo?.poster_path}`}
+              src={`https://image.tmdb.org/t/p/original/${movieinfo?.poster_path || movieinfo?.backdrop_path}`}
               alt=""
             />
             <div className=" w-full">
@@ -73,7 +74,7 @@ const CardInfo = () => {
               {/* release date */}
               <div className="pl-16  flex items-center gap-6 mb-6 mt-8">
                 <div
-                  className={`rounded-full bg-red-500 py-2 px-2 ${badgetColor(
+                  className={`rounded-full  py-2 px-2 ${badgetColor(
                     (movieinfo?.vote_average * 10).toFixed()
                   )}`}
                 >
@@ -136,7 +137,7 @@ const CardInfo = () => {
                   Play Trailer
                 </div>
               </Link>
-              )
+              
             </div>
           </div>
         </div>
