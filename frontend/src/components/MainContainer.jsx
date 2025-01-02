@@ -14,9 +14,9 @@ const MainContainer = () => {
 
   const movie = useSelector((store) => store?.movie?.NowPlayingMovie);
   if (!movie) return; // early return ---
-  console.log(movie)
  
-  const { id, overview, title } = movie[3];
+ 
+  const { id, overview, title } = movie[4];
   // movie[(Math.random() * movie.length).toFixed()];
   return (
     <div>

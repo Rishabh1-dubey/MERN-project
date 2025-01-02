@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Login";
 import Browesr from "./Browesr";
 import CardInfo from "./cardInfo/CardInfo";
-import Playtrailer from "./Playtrailer";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -16,10 +15,7 @@ const Body = () => {
     },{
       path:"/cardinfo/:id",
       element:<CardInfo/>
-    },{
-      path:"/cardinfo/:id/trailer",
-      element:<Playtrailer/>
-    }
+    },
   ]);
   return (
     <div>

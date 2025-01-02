@@ -14,6 +14,7 @@ const MovieList = ({ title, movies }) => {
            <Link to={"/cardinfo/"+ movie?.id}>
             <MovieCard
             key={movie.id}
+            movieId={movie.id}
             poster_path={movie.poster_path || movie.backdrop_path}
             />
             </Link>
