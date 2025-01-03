@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
+import MovieList from "../components/MovieList";
 import { FiSearch } from "react-icons/fi";
 import { options } from "../utils/constents";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Set_Search_Movie } from "../redux/searchSlice";
 const SearchMovie = () => {
-  const dispatch = useDispatch();
   const [searchMovie, setSearchMovie] = useState("");
+  const dispatch = useDispatch();
+  // const {movieName,movieDetails} = useSelector((state) => state.search);
+  const { movieName, movieDetails } = useSelector((state) => state.search);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -20,31 +23,41 @@ const SearchMovie = () => {
 
       const movies = res?.data?.results;
       dispatch(Set_Search_Movie({ searchMovie, movies }));
-
-    } 
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
+    setSearchMovie("")
   };
 
   return (
-    <div className="">
-      <form onSubmit={onSubmit} class="  w-[700px] mx-auto pt-40 ">
-        <div className="flex justify-between shadow-md border-2 p-2 border-gray-200 rounded-lg w-[100%]">
-          <input
-            value={searchMovie}
-            onChange={(e) => {
-              setSearchMovie(e.target.value);
-            }}
-            className="w-full outline-none rounded-md text-lg ml-2"
-            placeholder="Search Movies......"
-          />
-          <button className="  rounded-md">
-            <FiSearch className="text-3xl mr-4 text-gray-500 hover:text-black" />
-          </button>
+    <>
+      <div className="flex justify-center  w-screen ">
+        <div className=" w-full ">
+          <img className="bg-gradient-to-b from-black" src="https://wallpapers.com/images/hd/netflix-background-gs7hjuwvv2g0e9fj.jpg" />
+          <form
+            onSubmit={onSubmit}
+            className=" absolute top-3 w-[700px]  pt-40 mx-auto right-[370px] "
+          >
+            <div className="flex justify-between shadow-md border-2 p-2 border-gray-200 rounded-lg w-[100%] gap-2">
+              <input
+                value={searchMovie}
+                onChange={(e) => {
+                  setSearchMovie(e.target.value);
+                }}
+                className="w-full outline-none rounded-md text-lg ml-4 pl-4 "
+                placeholder="Search Movies......"
+              />
+              <button className="  rounded-md">
+                <FiSearch className="text-3xl mr-4 text-gray-500 hover:text-red-700" />
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
+      <div className="absolute top-[40%] w-[80%] ">
+        <MovieList title={movieName} movies={movieDetails} />
+      </div>
+      </div>
+    </>
   );
 };
 
