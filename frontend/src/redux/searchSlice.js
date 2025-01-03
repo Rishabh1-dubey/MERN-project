@@ -4,14 +4,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const searchSlice =createSlice({
     name:"search",
     initialState:{
-        searchMovie:null,
+        movieName:null,
         movieDetails:null
     },
     reducers:{
 
         Set_Search_Movie:(state,action)=>{
             const{searchMovie , movies} = action.payload
-            state.searchMovie = searchMovie;
+            state.movieName = searchMovie;
             state.movieDetails = movies
         }
     }
