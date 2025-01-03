@@ -44,7 +44,7 @@ const CardInfo = () => {
         {/* nav bar part -1 */}
       <nav className="absolute z-10 h-[10vh] w-[400px] flex gap-8 items-center text-2xl text-zinc-200   mt-20 ml-24">
         <FaArrowLeft
-          className="text-gray-600 hover:text-yellow-500 cursor-pointer"
+          className="text-pink-600 hover:text-yellow-500 cursor-pointer"
           onClick={() => navigate(-1)}
         ></FaArrowLeft>
 
@@ -57,14 +57,8 @@ const CardInfo = () => {
         </a>
       </nav>
     <div>
-      <div style={{
-          background: `linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.8)) ,url(https://image.tmdb.org/t/p/original/${
-            movieinfo?.poster_path || movieinfo?.backdrop_path
-          } )`,
-          backgroundPosition: "top 10%",
-          backgroundSize: "cover",
-        }} className="pt-28 bg-slate-800">
-        <div className="w-[800px] mx-auto ">
+      <div className="pt-28 bg-black">
+        <div className="w-[1000px] mx-auto ">
 
         <iframe
           className="w-full aspect-video pb-6"

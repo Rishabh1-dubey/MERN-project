@@ -85,7 +85,7 @@ function Login() {
       }else{
         navigate("/")
       }
-    },[navigate])
+    },[])
   };
   return (
     <div>

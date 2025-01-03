@@ -44,7 +44,7 @@ const Header = () => {
         <div className="flex items-center ">
           <h1 className="text-xl font-bold text-white flex gap-1">
             <IoIosArrowDropdown size="26px " />
-            {`Welcome Back ${user.name} 🧒🏻`}
+            {`Welcome Back ${user.name.toUpperCase()} 😊`}
           </h1>
           <div className=" ml-4">
             <button
