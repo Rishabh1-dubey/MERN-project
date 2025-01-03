@@ -3,7 +3,7 @@ import { IoMdPlayCircle } from "react-icons/io";
 import { FaInfoCircle } from "react-icons/fa";
 const VideoTitle = ({title , overview}) => {
   return (
-    <div className="w-screen aspect-video absolute pt-[16%] bg-gradient-to-r from-black text-white    ">
+    <div className="w-[vw] aspect-video absolute pt-[16%] bg-gradient-to-r from-black text-white    ">
       <div className="ml-24 z-10 ">
       <h1 className="text-3xl font-bold  ">{title}</h1>
       <p className="text-xl pt-4 pb-4 w-1/3 ">

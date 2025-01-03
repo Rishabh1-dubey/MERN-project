@@ -17,13 +17,13 @@ const CardInfo = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
-  console.log(id);
+
   useMovieInfo(id);
   const movieinfo = useSelector((store) => store.movie.movieInfo);
   
   usePlayTrailer(id);
   const trailer = useSelector((store) => store.movie.playTrailer);
-  console.log(trailer);
+  
   
   const badgetColor = (rating) => {
     if (rating > 70) {

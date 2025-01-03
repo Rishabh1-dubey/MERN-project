@@ -10,7 +10,7 @@ const CastandCrew = () => {
   useMovieCredit(id);
 
   const movieCast = useSelector((state) => state.movie.cast);
-  console.log(movieCast);
+  
   return (
     <div className="w-screen bg-black ">
       <h1 className="text-white text-4xl">Cast and Crew</h1>
