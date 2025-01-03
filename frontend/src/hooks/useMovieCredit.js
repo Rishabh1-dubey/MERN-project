@@ -12,7 +12,7 @@ const useMovieCredit = (id) => {
       `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`,
       options
     );
-    console.log(res.data.cast);
+
     dispath(Set_Cast(res.data.cast.slice(0,15)));
   };
   useEffect(() => {
