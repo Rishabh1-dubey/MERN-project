@@ -61,6 +61,7 @@ const Header = () => {
            { toggle ? "Home": "SearchMovie"} 
             </button>
           </div>
+          <div></div>
         </div>
       )}
     </div>
